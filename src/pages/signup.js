@@ -32,8 +32,8 @@ export default function Signup() {
 
         const usernameExists = await checkUsernameIsExists(username); //it will return empty array if it's not existed
 
-
-        if (!usernameExists.length) { // => it means if username is not exist
+        if (!usernameExists.length) {
+            // => it means if username is not exist
             try {
                 const createdUserResult = await firebase
                     .auth()
@@ -55,16 +55,20 @@ export default function Signup() {
                         followers: [],
                         dateCreated: Date.now(),
                     });
-                history.push(ROUTES.DASHBOARD);
-            } catch (err) {
+                return history.push(ROUTES.DASHBOARD);
+            } catch (error) {
+                setUsername("");
                 setFullName("");
                 setEmailAddress("");
                 setPassword("");
                 setPasswordConfirm("");
-                setError(err.message);
+                setError(error.message);
             }
         } else {
             setUsername("");
+            setFullName('');
+            setEmailAddress('');
+            setPassword('');
             setError("That username is already taken, please try another.");
         }
     };
@@ -93,7 +97,11 @@ export default function Signup() {
                     {error && (
                         <p className="mb-4 text-xs text-red-primary">{error}</p>
                     )}
-                    <form onSubmit={handleSignup} method="POST">
+                    <form
+                        onSubmit={handleSignup}
+                        method="POST"
+                        data-testid="sign-up"
+                    >
                         <input
                             aria-label="Enter your username"
                             type="text"
@@ -182,6 +190,7 @@ export default function Signup() {
                         <Link
                             to={ROUTES.LOGIN}
                             className="font-bold text-blue-medium"
+                            data-testid="login"
                         >
                             Login
                         </Link>

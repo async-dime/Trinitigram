@@ -56,10 +56,10 @@ export default function Login() {
                     </h1>
 
                     {error && (
-                        <p className="mb-4 text-xs text-red-primary">{error}</p>
+                        <p data-testid="error" className="mb-4 text-xs text-red-primary">{error}</p>
                     )}
 
-                    <form onSubmit={handleLogin} method="POST">
+                    <form onSubmit={handleLogin} method="POST" data-testid="login">
                         <input
                             aria-label="Enter your email address"
                             type="text"
@@ -108,6 +108,7 @@ export default function Login() {
                         <Link
                             to={ROUTES.SIGN_UP}
                             className="font-bold text-blue-medium"
+                            data-testid="sign-up"
                         >
                             Sign up
                         </Link>
