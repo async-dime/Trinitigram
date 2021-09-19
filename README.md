@@ -4,4 +4,8 @@
 an instagram clone 
 
 
-Deployed site : https://trinitigram.netlify.app
+## TRY:
+#### email: `anasawala@gmail.com`
+#### password: `anasawala`
+
+### [Live Site](https://trinitigram.netlify.app)
